@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://ehabmansour1.github.io/mobbin-mcp/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image><image:loc>https://ehabmansour1.github.io/mobbin-mcp/assets/social-preview.png</image:loc></image:image>
+    <image:image><image:loc>https://ehabmansour1.github.io/mobbin-mcp/assets/demo-search-screens.png</image:loc></image:image>
+    <image:image><image:loc>https://ehabmansour1.github.io/mobbin-mcp/assets/demo-app-flows.png</image:loc></image:image>
+    <image:image><image:loc>https://ehabmansour1.github.io/mobbin-mcp/assets/demo-flow-detail.png</image:loc></image:image>
+    <image:image><image:loc>https://ehabmansour1.github.io/mobbin-mcp/assets/demo-auth.png</image:loc></image:image>
+    <image:image><image:loc>https://ehabmansour1.github.io/mobbin-mcp/assets/demo-smoke-test.png</image:loc></image:image>
+  </url>
+</urlset>

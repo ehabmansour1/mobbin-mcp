@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>demo: log in and connect</title>
+<style>
+  :root {
+    --bg: #0f1116; --bar: #15181e; --border: #2a2f38;
+    --fg: #e4e6ea; --out: #b3b9c3; --dim: #7d848f; --dimmer: #565d68;
+    --green: #4fc98b; --coral: #e8875f; --blue: #82a8f0; --yellow: #e2c27a; --user: #1c2027;
+  }
+  html, body { margin: 0; background: transparent; }
+  body {
+    width: 680px; padding: 12px; box-sizing: border-box;
+    font: 12.5px/1.6 Consolas, "Cascadia Mono", "SF Mono", Menlo, monospace;
+    color: var(--fg); -webkit-font-smoothing: antialiased;
+  }
+  .win { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,.22); }
+  .bar { display: flex; align-items: center; gap: 7px; padding: 9px 12px; background: var(--bar); border-bottom: 1px solid var(--border); }
+  .bar i { width: 10px; height: 10px; border-radius: 50%; background: #3a3f48; display: block; }
+  .bar i:nth-child(1) { background: #ff5f57; } .bar i:nth-child(2) { background: #febc2e; } .bar i:nth-child(3) { background: #28c840; }
+  .bar span { flex: 1; text-align: center; color: var(--dim); font: 500 11.5px "Segoe UI", system-ui, sans-serif; margin-right: 44px; }
+  .term { padding: 14px 18px 14px; }
+  .user { background: var(--user); color: #d9dce1; border-radius: 4px; padding: 5px 9px; display: grid; grid-template-columns: 2ch 1fr; }
+  .user::before { content: ">"; color: var(--dim); }
+  .msg { display: grid; grid-template-columns: 2ch 1fr; margin-top: 12px; }
+  .dot { width: .6em; height: .6em; border-radius: 50%; background: var(--fg); margin-top: .5em; }
+  .dot.ok { background: var(--green); }
+  .tool b { font-weight: 700; color: var(--fg); }
+  .tool .mcp { color: var(--dim); }
+  .tool .args { color: var(--out); }
+  .out { display: grid; grid-template-columns: 2ch 3ch 1fr; color: var(--out); }
+  .out .el { grid-column: 2; color: var(--dimmer); font-family: "Cambria Math", "Segoe UI Symbol", monospace; }
+  .pre { white-space: pre-wrap; }
+  .h { color: var(--coral); font-weight: 700; }
+  .n { color: var(--fg); font-weight: 700; }
+  .id { color: var(--blue); }
+  .tag { color: var(--yellow); }
+  .mute { color: var(--dimmer); }
+  .more { color: var(--dim); font-style: italic; }
+  .say { color: var(--fg); white-space: pre-wrap; }
+  .say code { color: var(--blue); font-family: inherit; }
+  .input { margin-top: 16px; border: 1px solid #3a404a; border-radius: 6px; padding: 5px 9px; color: var(--dim); }
+  .input .cur { display: inline-block; width: .6em; height: 1.1em; background: #c9ccd2; vertical-align: -.2em; margin-left: .3em; }
+  .hint { color: var(--dimmer); font-size: 11.5px; padding: 3px 10px 0; }
+  .emo { font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif; font-size: .95em; }
+</style>
+<style>
+  .sh { white-space: pre-wrap; color: var(--out); }
+  .ps { color: var(--green); } .ps .dir { color: var(--blue); }
+  .cmd { color: var(--fg); }
+  .cm { color: var(--dimmer); font-style: italic; }
+  .okc { color: var(--green); font-weight: 700; }
+  .rows { display: grid; grid-template-columns: 6ch 26ch 7ch 1fr; column-gap: 0; }
+  .rows .pass { color: #0f1116; background: var(--green); font-weight: 700; border-radius: 3px; text-align: center; margin: 2px 1ch 2px 0; line-height: 1.45; }
+  .rows .nm { color: var(--fg); padding-left: .5ch; }
+  .rows .ms { color: var(--yellow); text-align: right; padding-right: 2ch; }
+  .rows .pv { color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rows .pv .img { color: var(--coral); }
+</style>
+</head>
+<body>
+<div class="win">
+  <div class="bar"><i></i><i></i><i></i><span>bash — ~</span></div>
+  <div class="term"><div class="sh"><span class="cm"># 1. Log in on mobbin.com, then in DevTools → Console run:  copy(document.cookie)</span>
+<span class="ps"><span class="dir">~</span> $</span> <span class="cmd">npx -y github:ehabmansour1/mobbin-mcp auth --clipboard</span>
+
+<span class="okc">✓</span> Logged in as <span class="id">you@example.com</span>. Session saved to /home/you/.mobbin-mcp/auth.json
+
+<span class="cm"># 2. Register the server with Claude Code (once, for all projects)</span>
+<span class="ps"><span class="dir">~</span> $</span> <span class="cmd">claude mcp add --scope user mobbin-mcp -- \</span>
+<span class="ps">&gt;</span>     <span class="cmd">npx -y github:ehabmansour1/mobbin-mcp</span>
+Added stdio MCP server mobbin-mcp with command: <span style="white-space:nowrap">npx -y github:ehabmansour1/mobbin-mcp</span> to user config
+File modified: ~/.claude.json
+
+<span class="ps"><span class="dir">~</span> $</span> <span class="cmd">claude mcp list</span>
+Checking MCP server health…
+
+mobbin-mcp: npx -y github:ehabmansour1/mobbin-mcp - <span class="okc">✓ Connected</span>
+
+<span class="ps"><span class="dir">~</span> $</span> <span class="cur" style="display:inline-block;width:.6em;height:1.1em;background:#c9ccd2;vertical-align:-.2em"></span></div></div>
+</div>
+<script>document.body.dataset.h = Math.ceil(document.body.getBoundingClientRect().height);</script>
+</body>
+</html>

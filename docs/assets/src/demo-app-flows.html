@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>demo: mobbin_quick_search + mobbin_get_app_flows</title>
+<style>
+  :root {
+    --bg: #0f1116; --bar: #15181e; --border: #2a2f38;
+    --fg: #e4e6ea; --out: #b3b9c3; --dim: #7d848f; --dimmer: #565d68;
+    --green: #4fc98b; --coral: #e8875f; --blue: #82a8f0; --yellow: #e2c27a; --user: #1c2027;
+  }
+  html, body { margin: 0; background: transparent; }
+  body {
+    width: 680px; padding: 12px; box-sizing: border-box;
+    font: 12.5px/1.6 Consolas, "Cascadia Mono", "SF Mono", Menlo, monospace;
+    color: var(--fg); -webkit-font-smoothing: antialiased;
+  }
+  .win { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,.22); }
+  .bar { display: flex; align-items: center; gap: 7px; padding: 9px 12px; background: var(--bar); border-bottom: 1px solid var(--border); }
+  .bar i { width: 10px; height: 10px; border-radius: 50%; background: #3a3f48; display: block; }
+  .bar i:nth-child(1) { background: #ff5f57; } .bar i:nth-child(2) { background: #febc2e; } .bar i:nth-child(3) { background: #28c840; }
+  .bar span { flex: 1; text-align: center; color: var(--dim); font: 500 11.5px "Segoe UI", system-ui, sans-serif; margin-right: 44px; }
+  .term { padding: 14px 18px 14px; }
+  .user { background: var(--user); color: #d9dce1; border-radius: 4px; padding: 5px 9px; display: grid; grid-template-columns: 2ch 1fr; }
+  .user::before { content: ">"; color: var(--dim); }
+  .msg { display: grid; grid-template-columns: 2ch 1fr; margin-top: 12px; }
+  .dot { width: .6em; height: .6em; border-radius: 50%; background: var(--fg); margin-top: .5em; }
+  .dot.ok { background: var(--green); }
+  .tool b { font-weight: 700; color: var(--fg); }
+  .tool .mcp { color: var(--dim); }
+  .tool .args { color: var(--out); }
+  .out { display: grid; grid-template-columns: 2ch 3ch 1fr; color: var(--out); }
+  .out .el { grid-column: 2; color: var(--dimmer); font-family: "Cambria Math", "Segoe UI Symbol", monospace; }
+  .pre { white-space: pre-wrap; }
+  .h { color: var(--coral); font-weight: 700; }
+  .n { color: var(--fg); font-weight: 700; }
+  .id { color: var(--blue); }
+  .tag { color: var(--yellow); }
+  .mute { color: var(--dimmer); }
+  .more { color: var(--dim); font-style: italic; }
+  .say { color: var(--fg); white-space: pre-wrap; }
+  .say code { color: var(--blue); font-family: inherit; }
+  .input { margin-top: 16px; border: 1px solid #3a404a; border-radius: 6px; padding: 5px 9px; color: var(--dim); }
+  .input .cur { display: inline-block; width: .6em; height: 1.1em; background: #c9ccd2; vertical-align: -.2em; margin-left: .3em; }
+  .hint { color: var(--dimmer); font-size: 11.5px; padding: 3px 10px 0; }
+  .emo { font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif; font-size: .95em; }
+</style>
+</head>
+<body>
+<div class="win">
+  <div class="bar"><i></i><i></i><i></i><span>claude — ~/projects/language-app</span></div>
+  <div class="term">
+    <div class="user"><div>How does Duolingo do onboarding? Show me their flows on Mobbin.</div></div>
+
+    <div class="msg tool"><div class="dot ok"></div><div><b>mobbin-mcp - mobbin_quick_search</b> <span class="mcp">(MCP)</span><span class="args">(query: "Duolingo", limit: 3)</span></div></div>
+    <div class="out"><span class="el">⎿</span><div class="pre"><span class="h">## Apps matching "Duolingo" (ios)</span>
+1. <span class="n">Duolingo</span> (ios) — Learn languages
+   app_id: <span class="id">688f6e68-12be-4b63-80b7-8377c8482911</span> · mobbin.com/apps/duolingo-ios-688f…
+2. <span class="n">Duolingo Math</span> (ios) — Math lessons &amp; brain training
+   app_id: <span class="id">859aa284-6ec3-…</span> · mobbin.com/apps/duolingo-math-ios-859a…
+3. <span class="n">Duolingo ABC</span> (ios) — Interactive stories for kids
+   app_id: <span class="id">8458cf62-1ddf-…</span> · mobbin.com/apps/duolingo-abc-ios-8458…</div></div>
+
+    <div class="msg tool"><div class="dot ok"></div><div><b>mobbin-mcp - mobbin_get_app_flows</b> <span class="mcp">(MCP)</span><span class="args">(app_id: "688f6e68-12be-4b63-80b7-8377c8482911", topic: "onboarding", limit: 8)</span></div></div>
+    <div class="out"><span class="el">⎿</span><div class="pre"><span class="h">## Flows for Duolingo (ios) — "onboarding"</span>
+Showing 8 of 50. 7 of the shown results are <span class="emo">🔒</span> Pro-only on your Mobbin plan (metadata only).
+
+1. <span class="n">Duolingo — Onboarding</span>
+   <span class="tag">Onboarding</span> · 20 screens
+   flow_id: <span class="id">b0b4f93f-5637-46ec-9d77-49ecda6b991d</span> · mobbin.com/flows/b0b4f93f-…
+2. <span class="n">Duolingo — Onboarding</span> <span class="emo">🔒</span> Pro-only
+   <span class="tag">Selecting &amp; Choosing</span> · 20 screens
+   flow_id: <span class="id">ac9d2f58-868d-…</span> · mobbin.com/flows/ac9d2f58-…
+3. <span class="n">Duolingo — Creating a profile</span> <span class="emo">🔒</span> Pro-only
+   <span class="tag">Creating Account, Following &amp; Subscribing</span> · 16 screens
+   flow_id: <span class="id">4511e153-c7d5-…</span> · mobbin.com/flows/4511e153-…
+4. <span class="n">Duolingo — Onboarding</span> <span class="emo">🔒</span> Pro-only
+   <span class="tag">Onboarding, Selecting &amp; Choosing</span> · 24 screens
+   flow_id: <span class="id">7d7aacbe-213b-…</span> · mobbin.com/flows/7d7aacbe-…
+<span class="more">… +12 lines (ctrl+o to expand)</span></div></div>
+
+    <div class="msg"><div class="dot"></div><div class="say">Duolingo has several onboarding-related flows on Mobbin. The main <b>Onboarding</b> flow (20 screens) is open on your plan; the others (Creating a profile, Choosing a learning goal, Adding a course…) are Pro-only, so I can only see their metadata.
+
+Want the step-by-step for the open one? I'll call <code>mobbin_get_flow</code> on <code>b0b4f93f-…</code>.</div></div>
+
+    <div class="input">&gt;<span class="cur"></span></div>
+    <div class="hint">? for shortcuts</div>
+  </div>
+</div>
+<script>document.body.dataset.h = Math.ceil(document.body.getBoundingClientRect().height);</script>
+</body>
+</html>

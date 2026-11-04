@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobbin MCP Server – Search Mobbin Screens &amp; Flows in Claude</title>
+<meta name="description" content="Unofficial, open-source Mobbin MCP server. Search real iOS, Android and web app screens, user flows and UI patterns from Claude Code, Cursor, VS Code and more.">
+<link rel="canonical" href="https://ehabmansour1.github.io/mobbin-mcp/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="Ehab Mansour">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0e0f0d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f4ee" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mobbin MCP">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Mobbin MCP Server (Unofficial) – Search Mobbin Screens &amp; Flows in Claude">
+<meta property="og:description" content="Unofficial, open-source Mobbin MCP server that lets Claude, Cursor, VS Code and other AI assistants search Mobbin's library of real app screens, user flows and UI patterns.">
+<meta property="og:url" content="https://ehabmansour1.github.io/mobbin-mcp/">
+<meta property="og:image" content="https://ehabmansour1.github.io/mobbin-mcp/assets/social-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="Mobbin MCP banner: search real app screens and flows from Claude, Cursor and VS Code, with a terminal finding Duolingo's onboarding flows through mobbin_quick_search, mobbin_get_app_flows and mobbin_get_flow.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mobbin MCP Server (Unofficial) – Search Mobbin Screens &amp; Flows in Claude">
+<meta name="twitter:description" content="Unofficial, open-source Mobbin MCP server that lets Claude, Cursor, VS Code and other AI assistants search Mobbin's library of real app screens, user flows and UI patterns.">
+<meta name="twitter:image" content="https://ehabmansour1.github.io/mobbin-mcp/assets/social-preview.png">
+<meta name="twitter:image:alt" content="Mobbin MCP banner: search real app screens and flows from Claude, Cursor and VS Code, with a terminal finding Duolingo's onboarding flows through mobbin_quick_search, mobbin_get_app_flows and mobbin_get_flow.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://ehabmansour1.github.io/mobbin-mcp/#website",
+      "url": "https://ehabmansour1.github.io/mobbin-mcp/",
+      "name": "Mobbin MCP",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ehabmansour1.github.io/mobbin-mcp/#webpage",
+      "url": "https://ehabmansour1.github.io/mobbin-mcp/",
+      "name": "Mobbin MCP Server – Search Mobbin Screens & Flows in Claude",
+      "description": "Unofficial, open-source Mobbin MCP server. Search real iOS, Android and web app screens, user flows and UI patterns from Claude Code, Cursor, VS Code and more.",
+      "isPartOf": { "@id": "https://ehabmansour1.github.io/mobbin-mcp/#website" },
+      "about": { "@id": "https://ehabmansour1.github.io/mobbin-mcp/#software" },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://ehabmansour1.github.io/mobbin-mcp/assets/social-preview.png",
+        "width": 1280,
+        "height": 640
+      },
+      "dateModified": "2026-11-04",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://ehabmansour1.github.io/mobbin-mcp/#software",
+      "name": "Mobbin MCP",
+      "alternateName": "mobbin-mcp",
+      "description": "Unofficial Model Context Protocol (MCP) server for Mobbin. Lets Claude, Claude Code, Cursor, VS Code and other MCP clients search Mobbin's library of real app screens, user flows and UI patterns, list an app's screens and flows, and view screenshots.",
+      "url": "https://ehabmansour1.github.io/mobbin-mcp/",
+      "codeRepository": "https://github.com/ehabmansour1/mobbin-mcp",
+      "programmingLanguage": { "@type": "ComputerLanguage", "name": "TypeScript" },
+      "runtimePlatform": "Node.js 20+",
+      "license": "https://opensource.org/licenses/MIT",
+      "version": "2.0.0",
+      "dateModified": "2026-11-04",
+      "image": "https://ehabmansour1.github.io/mobbin-mcp/assets/social-preview.png",
+      "keywords": "Mobbin, MCP, MCP server, Model Context Protocol, Claude, Claude Code, Cursor, VS Code, UI design, UX design, app screens, user flows, UI patterns, design inspiration",
+      "author": {
+        "@type": "Person",
+        "name": "Ehab Mansour",
+        "url": "https://ehabmansour.com/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ehabmansour1.github.io/mobbin-mcp/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is this the official Mobbin MCP server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. This is an unofficial, community-built project and is not affiliated with or endorsed by Mobbin. Mobbin runs its own official MCP server at https://api.mobbin.com/mcp, and that is the recommended choice for anything important." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a paid Mobbin plan?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, a free Mobbin account works. On a free plan Mobbin marks many results as restricted. They appear as \"🔒 Pro-only\" (metadata only). On any plan, each search returns only the first page of results Mobbin serves, because this server does not paginate. The server does not try to get around the paywall." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Mobbin MCP on npm?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, this project is not published to npm. The mobbin-mcp name was used by the original project, which has since been unpublished, so npx mobbin-mcp will not work. Install this one straight from GitHub with npx -y github:ehabmansour1/mobbin-mcp, or clone the repository and run npm install and npm run build." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does login work, and where is my session stored?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Log in to mobbin.com in your browser, copy your cookies (copy(document.cookie) in the console, or a cookie-export JSON file) and run the auth command. Only Mobbin's session cookies are used. The session is verified, saved to ~/.mobbin-mcp/auth.json on your machine and refreshed automatically. You can set the MOBBIN_AUTH_COOKIE environment variable instead." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI apps and editors does it work with?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Any client that can run a local stdio MCP server, including Claude Code, Claude Desktop, Cursor, VS Code with GitHub Copilot, Windsurf / Devin Desktop, Cline, OpenAI Codex, Gemini CLI, Zed, Continue, JetBrains AI Assistant, Junie and LM Studio." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the AI actually see the screenshots?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, if your model accepts images. mobbin_get_screen_detail returns a screenshot as an image, and mobbin_get_flow returns up to 6 screenshots by default when include_images is true (raise max_images to get up to 12). Images are only fetched from the signed URLs Mobbin itself issues for your account." }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if Mobbin changes its API?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The server uses Mobbin's undocumented internal endpoints, which can change at any time. If a route moves, the affected tool reports a 404 with a hint, and npm run smoke shows exactly which tools broke. All 16 live smoke calls passed on 2026-11-04." }
+        },
+        {
+          "@type": "Question",
+          "name": "Could heavy use get my Mobbin account rate-limited?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The server sends one request at a time with a 400 ms gap and does not retry Mobbin's rate-limit errors. It reports them as plain messages instead. Automated use may still conflict with Mobbin's terms, so use your own account at low volume." }
+        },
+        {
+          "@type": "Question",
+          "name": "npx fails on Windows with spawn npx ENOENT. What do I do?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Wrap the command in cmd /c, for example \"command\": \"cmd\" with \"args\": [\"/c\", \"npx\", \"-y\", \"github:ehabmansour1/mobbin-mcp\"]. Or clone the repository and point the client at node with the full path to dist/index.js, which never needs the wrapper." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --bg:#0e0f0d;--bg2:#121411;--surface:#161814;--surface2:#1c1f1a;--line:#2a2d27;--line2:#3a3e36;
+  --text:#ecebe4;--muted:#a9a99f;--faint:#7d7e75;
+  --accent:#ff7a45;--accent-ink:#160a04;--accent-text:#ff8f60;--ok:#7fd6a8;--warn:#f2c46b;
+  --code-bg:#11130f;--code-text:#e6e5dc;--code-line:#2a2d27;
+  --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,"URW Palladio L",P052,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Code","SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --radius:14px;--max:1160px;
+}
+@media (prefers-color-scheme:light){
+  :root{
+    --bg:#f6f4ee;--bg2:#efece3;--surface:#fffdf8;--surface2:#f3f0e7;--line:#dcd8cc;--line2:#c9c4b5;
+    --text:#1a1b17;--muted:#4f5049;--faint:#6b6c63;
+    --accent:#b8430f;--accent-ink:#ffffff;--accent-text:#a63c0c;--ok:#1f7a4d;--warn:#8a5a00;
+    --code-bg:#1a1c17;--code-text:#ecebe4;--code-line:#33362f;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 var(--sans);text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--accent-text);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+code,pre,kbd{font-family:var(--mono);font-size:.9em}
+:not(pre)>code{background:var(--surface2);border:1px solid var(--line);border-radius:6px;padding:.08em .38em;white-space:nowrap}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--accent);color:var(--accent-ink);padding:10px 16px;border-radius:8px;font-weight:600;z-index:100;text-decoration:none}
+.skip:focus{top:12px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* header */
+.site-head{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-family:var(--serif);font-size:1.18rem;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.brand img{width:28px;height:28px}
+.brand small{font:500 .68rem/1 var(--mono);color:var(--faint);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line2);border-radius:99px;padding:4px 7px}
+.nav{margin-left:auto;display:flex;align-items:center;gap:4px}
+.nav ul{display:flex;list-style:none;margin:0;padding:0;gap:2px}
+.nav a{display:block;color:var(--muted);text-decoration:none;font-size:.9rem;padding:6px 10px;border-radius:8px}
+.nav a:hover{color:var(--text);background:var(--surface2)}
+.nav .gh{color:var(--text);border:1px solid var(--line2);margin-left:6px;display:flex;align-items:center;gap:7px}
+.nav .gh svg{width:16px;height:16px}
+@media (max-width:880px){.nav ul{display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--line) 1px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 70% 30%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 80% 70% at 70% 30%,#000 30%,transparent 75%);opacity:.9;pointer-events:none}
+.hero::after{content:"";position:absolute;width:640px;height:640px;right:-160px;top:-220px;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-top:72px;padding-bottom:80px}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr;gap:44px;padding-top:48px;padding-bottom:56px}}
+.eyebrow{display:inline-flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.eyebrow li{font:600 .72rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line2);border-radius:99px;padding:7px 10px;background:var(--surface)}
+.eyebrow li:first-child{color:var(--accent-text);border-color:color-mix(in srgb,var(--accent) 45%,var(--line2))}
+h1,h2,h3{font-family:var(--serif);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin:0}
+h1{font-size:clamp(2.5rem,5.4vw,4.35rem)}
+h1 .kw{display:block;font-size:.52em;font-family:var(--mono);font-weight:600;letter-spacing:-.01em;color:var(--accent-text);margin-bottom:.45em}
+h1 em{font-style:italic;font-weight:600}
+.lead{font-size:1.16rem;color:var(--muted);max-width:36em;margin:22px 0 30px}
+.lead strong{color:var(--text);font-weight:600}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:11px;font-weight:600;font-size:1rem;text-decoration:none;border:1px solid transparent;transition:transform .15s ease,background .15s ease,border-color .15s ease}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-ghost{color:var(--text);border-color:var(--line2);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--text)}
+.install-line{margin-top:26px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.86rem;color:var(--faint)}
+.install-line code{white-space:normal}
+
+/* hero visual */
+.stage{position:relative;min-height:420px}
+.specimen{position:absolute;width:132px;height:250px;border:1px solid var(--line2);border-radius:22px;background:linear-gradient(180deg,var(--surface),var(--bg2));display:flex;flex-direction:column;justify-content:flex-start;padding:14px}
+.specimen span{font:600 .64rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.specimen::before{content:"";position:absolute;left:14px;right:14px;top:40px;height:8px;border-radius:4px;background:var(--line);box-shadow:0 18px 0 -1px var(--line),0 70px 0 18px var(--surface2)}
+.specimen.s1{right:8px;top:0;transform:rotate(4deg)}
+.specimen.s2{right:118px;top:-18px;transform:rotate(-3deg)}
+.specimen.s2::before{background:color-mix(in srgb,var(--accent) 55%,var(--line))}
+.term{position:relative;margin-top:96px;background:var(--code-bg);color:var(--code-text);border:1px solid var(--code-line);border-radius:var(--radius);box-shadow:0 30px 80px -30px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.02) inset;overflow:hidden}
+.term-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--code-line);font:500 .74rem/1 var(--mono);color:#8d8e85}
+.term-bar i{width:10px;height:10px;border-radius:50%;background:#3a3d36;display:block}
+.term-bar b{font-weight:500;margin-left:8px}
+.term pre{margin:0;padding:16px 18px 18px;font-size:.8rem;line-height:1.7;white-space:pre-wrap;word-break:break-word;overflow:hidden}
+.t-user{color:#ecebe4;background:#1d201a;display:block;border-radius:6px;padding:6px 10px;margin:0 0 10px}
+.t-dot{color:#7fd6a8}.t-tool{color:#fff;font-weight:700}.t-dim{color:#8d8e85}.t-h{color:#ff8f60;font-weight:700}.t-tag{color:#f2c46b}.t-id{color:#8ab4ff}.t-app{color:#fff;font-weight:700}
+.reveal{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.reveal.d1{animation-delay:.06s}.reveal.d2{animation-delay:.14s}.reveal.d3{animation-delay:.22s}.reveal.d4{animation-delay:.3s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* works-with strip */
+.clients{border-bottom:1px solid var(--line);background:var(--bg2)}
+.clients .wrap{display:flex;align-items:center;gap:18px;padding-top:18px;padding-bottom:18px;flex-wrap:wrap}
+.clients p{margin:0;font:600 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.clients ul{display:flex;flex-wrap:wrap;gap:8px 18px;list-style:none;margin:0;padding:0}
+.clients li{color:var(--muted);font-size:.93rem}
+.clients a{color:inherit;text-decoration:none}
+.clients a:hover{color:var(--text);text-decoration:underline}
+
+/* sections */
+section{padding:88px 0;border-bottom:1px solid var(--line)}
+@media (max-width:700px){section{padding:64px 0}}
+.sec-head{display:grid;grid-template-columns:180px 1fr;gap:24px;margin-bottom:44px}
+@media (max-width:800px){.sec-head{grid-template-columns:1fr;gap:10px}}
+.sec-num{font:600 .74rem/1.6 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding-top:10px}
+.sec-num b{color:var(--accent-text);font-weight:600}
+h2{font-size:clamp(1.9rem,3.6vw,2.75rem)}
+.sec-head p{color:var(--muted);font-size:1.08rem;margin:14px 0 0;max-width:44em}
+h3{font-size:1.28rem;letter-spacing:-.01em}
+
+/* notice */
+.notice{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:var(--radius);padding:18px 20px;margin-top:36px}
+.notice svg{width:22px;height:22px;color:var(--warn);margin-top:2px}
+.notice p{margin:0;color:var(--muted)}
+.notice p strong{color:var(--text)}
+
+/* features */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;list-style:none;margin:0;padding:0}
+@media (max-width:900px){.features{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.features{grid-template-columns:1fr}}
+.features li{background:var(--surface);padding:26px 24px 28px}
+.features .ico{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--surface2);border:1px solid var(--line);color:var(--accent-text);margin-bottom:16px}
+.features .ico svg{width:20px;height:20px}
+.features h3{margin-bottom:8px}
+.features p{margin:0;color:var(--muted);font-size:.97rem}
+
+/* demos */
+.demo-grid{display:grid;gap:28px;counter-reset:d}
+figure{margin:0}
+.shot{counter-increment:d;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:grid;grid-template-columns:2.4fr 1fr;gap:28px;align-items:start}
+.shot:nth-child(even){grid-template-columns:1fr 2.4fr}
+.shot:nth-child(even) a.img{order:2}
+.shot a.img{position:relative;display:block;border-radius:10px;overflow:hidden;background:var(--code-bg)}
+.shot a.img::after{content:"Open full size \2197";position:absolute;right:10px;bottom:10px;font:600 .7rem/1 var(--mono);letter-spacing:.04em;color:#fff;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.18);padding:7px 9px;border-radius:7px;pointer-events:none}
+.shot a.img:hover::after,.shot a.img:focus-visible::after{background:var(--accent);color:var(--accent-ink)}
+.shot img{width:100%;height:auto}
+.shot figcaption{position:sticky;top:96px;padding:14px 8px;color:var(--muted);font-size:1.02rem}
+.shot figcaption::before{content:"Example " counter(d,decimal-leading-zero);display:block;font:600 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);margin-bottom:14px}
+.shot figcaption strong{display:block;color:var(--text);font-family:var(--serif);font-size:1.5rem;line-height:1.2;margin-bottom:10px}
+@media (max-width:800px){.shot,.shot:nth-child(even){grid-template-columns:1fr;gap:12px;padding:12px}.shot:nth-child(even) a.img{order:0}.shot figcaption{position:static;padding:4px 6px 6px}}
+
+/* steps */
+.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:22px}
+.steps>li{counter-increment:s;display:grid;grid-template-columns:56px minmax(0,1fr);gap:18px;align-items:start}
+.steps>li::before{content:counter(s,decimal-leading-zero);font:700 1.05rem/1 var(--mono);color:var(--accent-text);border:1px solid var(--line2);border-radius:12px;height:48px;display:grid;place-items:center;background:var(--surface)}
+.steps h3{margin:10px 0 8px}
+.steps p{margin:0 0 12px;color:var(--muted)}
+.alt{margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.alt h3{margin-bottom:8px}
+.alt p{color:var(--muted);margin:0 0 12px}
+
+/* snippets */
+.snippet{position:relative;margin:10px 0 14px;border:1px solid var(--code-line);border-radius:12px;background:var(--code-bg);overflow:hidden}
+.snippet-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 8px 7px 14px;border-bottom:1px solid var(--code-line);font:600 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#9a9b91;min-height:38px}
+.snippet pre{margin:0;padding:14px 16px;overflow-x:auto;color:var(--code-text);font-size:.84rem;line-height:1.65;tab-size:2}
+.snippet pre code{font-size:inherit}
+.copy{font:600 .74rem/1 var(--mono);color:#ecebe4;background:#22251f;border:1px solid #3a3e36;border-radius:7px;padding:7px 10px;cursor:pointer;letter-spacing:.04em}
+.copy:hover{background:#2c3028}
+.copy[data-done]{color:#7fd6a8;border-color:#2f5a43}
+.c-cm{color:#8d8e85}
+
+/* connect */
+.clients-list{display:grid;gap:12px}
+details.client{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+details.client[open]{border-color:var(--line2)}
+details.client>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 22px;font-family:var(--serif);font-size:1.2rem;font-weight:700}
+details.client>summary::-webkit-details-marker{display:none}
+details.client>summary::after{content:"";margin-left:auto;width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
+details.client[open]>summary::after{transform:rotate(-135deg)}
+details.client>summary small{font:500 .78rem/1.3 var(--mono);color:var(--faint);letter-spacing:0}
+details.client>summary:hover{background:var(--surface2)}
+.client-body{padding:4px 22px 22px;border-top:1px solid var(--line)}
+.client-name{font:inherit;letter-spacing:inherit;line-height:inherit;margin:0}
+.client-body h4{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:20px 0 4px}
+.client-body p,.client-body li{color:var(--muted)}
+.client-body ul{padding-left:20px;margin:8px 0}
+.client-body .where{margin:16px 0 0}
+
+/* tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+caption{text-align:left;padding:14px 18px;color:var(--muted);font-size:.9rem;border-bottom:1px solid var(--line)}
+th,td{text-align:left;vertical-align:top;padding:14px 18px;border-bottom:1px solid var(--line)}
+tr:last-child>*{border-bottom:0}
+thead th{font:600 .72rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint);background:var(--bg2)}
+tbody th{font-weight:600}
+td{color:var(--muted)}
+.tools td:first-child code{color:var(--text);font-weight:600;white-space:nowrap}
+.params{margin:0;padding:0;list-style:none;display:grid;gap:4px}
+.params li{font-size:.86rem}
+.params code{white-space:normal!important}
+.req{color:var(--accent-text);font:600 .7rem/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;margin-left:4px}
+.chain{margin-top:26px;font-size:1rem;color:var(--muted)}
+.compare th[scope=col]:nth-child(2){color:var(--ok)}
+.yes{color:var(--ok);font-weight:600}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:880px}
+.faq details{border-bottom:1px solid var(--line);padding:4px 0 6px}
+.faq summary{cursor:pointer;list-style:none;display:flex;gap:14px;align-items:baseline;padding:14px 0;font-family:var(--serif);font-size:1.22rem;font-weight:700}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";font:600 1.1rem/1 var(--mono);color:var(--accent-text);width:16px;flex:none}
+.faq details[open] summary::before{content:"–"}
+.faq details p{margin:0 0 16px 30px;color:var(--muted);max-width:46em}
+
+/* disclaimer + footer */
+.disclaimer{background:var(--bg2)}
+.disclaimer .wrap{max-width:880px}
+.disclaimer p{color:var(--muted)}
+footer{padding:44px 0 56px;color:var(--faint);font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center}
+footer ul{display:flex;flex-wrap:wrap;gap:6px 22px;list-style:none;margin:0;padding:0}
+footer a{color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:10px;font:600 .85rem/1 var(--mono);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:90}
+.toast.on{opacity:1;transform:translateX(-50%)}
+/* small screens */
+.steps>li>div,.client-body,.alt{min-width:0}
+details.client>summary{flex-wrap:wrap;row-gap:4px}
+.compare{min-width:640px}
+@media (max-width:700px){
+  .compare{min-width:0}
+  .compare thead{display:none}
+  .compare,.compare tbody,.compare tr,.compare th,.compare td{display:block;width:100%}
+  .compare tr{padding:14px 16px;border-bottom:1px solid var(--line)}
+  .compare tr:last-child{border-bottom:0}
+  .compare th[scope=row]{border:0;padding:0 0 6px;font-family:var(--serif);font-size:1.08rem;color:var(--text)}
+  .compare td{border:0;padding:5px 0}
+  .compare td::before{content:attr(data-label);display:block;font:600 .68rem/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+}
+@media (max-width:700px){
+  :not(pre)>code{white-space:normal;overflow-wrap:anywhere}
+  .wrap{padding:0 18px}
+  .steps>li{grid-template-columns:40px minmax(0,1fr);gap:12px}
+  .steps>li::before{height:40px;font-size:.9rem;border-radius:10px}
+  .alt{padding:18px}
+  .client-body{padding:4px 16px 18px}
+  details.client>summary{padding:16px}
+  .tools thead{display:none}
+  .tools,.tools tbody,.tools tr,.tools td{display:block;width:100%}
+  .tools tr{border-bottom:1px solid var(--line);padding:14px 16px}
+  .tools tr:last-child{border-bottom:0}
+  .tools td{border:0;padding:4px 0}
+  .tools td:first-child code{white-space:normal}
+  .tools caption{display:block;width:100%}
+  .faq details p{margin-left:0}
+}
+@media (max-width:480px){.brand small{display:none}.nav .gh{margin-left:0}}
+@media print{.site-head,.copy,.toast,.stage{display:none}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="Mobbin MCP home">
+      <img src="favicon.svg" alt="" width="28" height="28">
+      Mobbin MCP <small>v2 · unofficial</small>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#quick-start">Quick start</a></li>
+        <li><a href="#connect">Connect</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a class="gh" href="https://github.com/ehabmansour1/mobbin-mcp">
+        <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <ul class="eyebrow reveal" aria-label="Project facts">
+        <li>Unofficial</li>
+        <li>Open source · MIT</li>
+        <li>TypeScript · Node 20+</li>
+      </ul>
+      <h1 class="reveal d1"><span class="kw">Mobbin MCP server</span>Real app screens &amp; flows, <em>inside your AI&nbsp;assistant</em></h1>
+      <p class="lead reveal d2">An open-source <strong>Model Context Protocol server for Mobbin</strong>. Ask Claude, Cursor, VS Code or any MCP client for signup screens, paywalls or a real app's onboarding flow, and it searches Mobbin's library of <strong>iOS, Android and web</strong> designs for you. It can also pull the screenshots into the chat.</p>
+      <div class="ctas reveal d3">
+        <a class="btn btn-primary" href="https://github.com/ehabmansour1/mobbin-mcp">
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          View on GitHub
+        </a>
+        <a class="btn btn-ghost" href="#quick-start">
+          Quick start
+          <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
+        </a>
+      </div>
+      <p class="install-line reveal d4">Runs straight from GitHub: <code>npx -y github:ehabmansour1/mobbin-mcp</code></p>
+    </div>
+
+    <div class="stage reveal d2" role="img" aria-label="Example: Claude Code calls mobbin_search_screens for paywall screens with a free-trial toggle and gets a list of matching Mobbin screens.">
+      <div class="specimen s2" aria-hidden="true"><span>Paywall</span></div>
+      <div class="specimen s1" aria-hidden="true"><span>Signup</span></div>
+      <div class="term" aria-hidden="true">
+        <div class="term-bar"><i></i><i></i><i></i><b>claude — ~/projects/fitness-app</b></div>
+<pre><span class="t-user">&gt; Find real paywall screens with a free-trial toggle on Mobbin.</span><span class="t-dot">●</span> <span class="t-tool">mobbin_search_screens</span> <span class="t-dim">(MCP)(query: "paywall with free trial toggle", limit: 6)</span>
+  <span class="t-dim">⎿</span> <span class="t-h">## Screens</span>
+    Showing 6 of 922.
+
+    3. <span class="t-app">Bevel</span> (ios)
+       <span class="t-tag">Select, Subscription &amp; Paywall, Pricing, Badge</span>
+       screen_id: <span class="t-id">87ac5af9-7c7a-…</span> · mobbin.com/screens/…
+    <span class="t-dim">… +6 lines</span>
+
+<span class="t-dot">●</span> Mobbin has 922 matches. Want me to open Bevel's
+  screen with <span class="t-id">mobbin_get_screen_detail</span>?</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clients" aria-labelledby="works-with">
+  <div class="wrap">
+    <p id="works-with">Works with</p>
+    <ul>
+      <li><a href="#c-claude-code">Claude Code</a></li>
+      <li><a href="#c-claude-desktop">Claude Desktop</a></li>
+      <li><a href="#c-cursor">Cursor</a></li>
+      <li><a href="#c-vscode">VS Code · Copilot</a></li>
+      <li><a href="#c-windsurf">Windsurf</a></li>
+      <li><a href="#c-cline">Cline</a></li>
+      <li><a href="#c-codex">Codex</a></li>
+      <li><a href="#c-gemini">Gemini CLI</a></li>
+      <li><a href="#c-zed">Zed</a></li>
+      <li><a href="#c-continue">Continue</a></li>
+      <li><a href="#c-jetbrains">JetBrains</a></li>
+      <li><a href="#c-lmstudio">LM Studio</a></li>
+    </ul>
+  </div>
+</div>
+
+<section id="features" aria-labelledby="features-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>01</b> / Features</div>
+      <div>
+        <h2 id="features-title">Design research without leaving the chat</h2>
+        <p>Eleven tools that cover how designers actually use Mobbin: search, browse an app, follow a flow screen by screen, and look at the pixels.</p>
+      </div>
+    </div>
+    <ul class="features">
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
+        <h3>Plain-English search</h3>
+        <p>Describe what you need, such as “dark mode settings with toggles”, and Mobbin's AI search finds matching screens and flows.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg></span>
+        <h3>Mobbin's own taxonomy</h3>
+        <p>Filter by screen patterns, UI elements, flow actions and app categories, OCR text in screenshots, or animated screens only.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 18h4"/></svg></span>
+        <h3>Drill into one app</h3>
+        <p>Find an app by name, list every screen in any version, or pull its onboarding, login and checkout flows.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 9"/></svg></span>
+        <h3>Screenshots the model can see</h3>
+        <p>Screens come back as images the model can see, so it can compare layouts, read the copy and critique them next to your work.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span>
+        <h3>Respects your plan</h3>
+        <p>Works on free accounts. Restricted results are labelled “🔒 Pro-only” and shown as metadata only. The paywall is never bypassed.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span>
+        <h3>Gentle and self-checking</h3>
+        <p>Sends one request at a time with a 400 ms gap, auto-refreshes your session, and <code>npm run smoke</code> tests every tool against the live API.</p>
+      </li>
+    </ul>
+
+    <div class="notice" role="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>
+      <p><strong>Mobbin now has an official MCP server.</strong> For anything important, use it: <code>claude mcp add mobbin --transport http https://api.mobbin.com/mcp</code>. This project is an independent, open-source alternative that runs locally and uses Mobbin's undocumented internal endpoints, which can change without notice. <a href="#compare">Compare the two</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="demo" aria-labelledby="demo-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>02</b> / Demo</div>
+      <div>
+        <h2 id="demo-title">What it looks like in Claude Code</h2>
+        <p>Tool output is real (captured 2026-11-04 on a free Mobbin plan) and trimmed for length; the assistant's replies are illustrative. The login screen uses a placeholder email, the smoke-test previews are condensed, and no Mobbin screenshots are included here. Click any image to open it full size.</p>
+      </div>
+    </div>
+    <div class="demo-grid">
+      <figure class="shot">
+        <a class="img" href="assets/demo-search-screens.png"><img src="assets/demo-search-screens.png" width="1360" height="1464" loading="lazy" decoding="async" alt="Claude Code terminal: the user asks for paywall screens with a free-trial toggle; the mobbin_search_screens tool returns 922 matches including Cal AI, Brilliant, Bevel and Google Health (Fitbit), with pattern tags and screen IDs."></a>
+        <figcaption><strong>Search screens by description</strong>Ask for paywalls with a free-trial toggle and <code>mobbin_search_screens</code> returns matching screens from real apps, with their pattern tags and screen IDs you can open next.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="img" href="assets/demo-app-flows.png"><img src="assets/demo-app-flows.png" width="1360" height="1728" loading="lazy" decoding="async" alt="Claude Code terminal: the user asks how a real app does onboarding; mobbin_quick_search finds the app ID and mobbin_get_app_flows lists its onboarding flows."></a>
+        <figcaption><strong>How does a real app onboard?</strong><code>mobbin_quick_search</code> finds the app, then <code>mobbin_get_app_flows</code> with <code>topic: "onboarding"</code> lists its flows.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="img" href="assets/demo-flow-detail.png"><img src="assets/demo-flow-detail.png" width="1360" height="1664" loading="lazy" decoding="async" alt="Output of mobbin_get_flow: the ordered screens of one flow, each with its screen ID and Mobbin pattern names."></a>
+        <figcaption><strong>Walk a flow screen by screen</strong><code>mobbin_get_flow</code> returns the ordered screens with their patterns. Add <code>include_images: true</code> to get the screenshots too.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="img" href="assets/demo-auth.png"><img src="assets/demo-auth.png" width="1360" height="896" loading="lazy" decoding="async" alt="Terminal: running the auth command with --clipboard prints “Logged in as you@example.com. Session saved to /home/you/.mobbin-mcp/auth.json” (placeholder email), then claude mcp add registers the server as mobbin-mcp and claude mcp list shows it as Connected."></a>
+        <figcaption><strong>One-time login</strong>Copy your mobbin.com cookies, run <code>auth --clipboard</code>, add the server, and <code>claude mcp list</code> shows it connected. Illustrative: the email and home path are placeholders.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="img" href="assets/demo-smoke-test.png"><img src="assets/demo-smoke-test.png" width="1360" height="1324" loading="lazy" decoding="async" alt="Terminal: npm run smoke calls every Mobbin MCP tool against the live API and prints a PASS line for each call."></a>
+        <figcaption><strong>Live smoke test</strong><code>npm run smoke</code> calls every tool against the live API and prints PASS or FAIL for each call. All 16 calls passed on 2026-11-04. The previews here are condensed summaries; the real script prints the first 200 characters of each result on its own line.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="quick-start" aria-labelledby="qs-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>03</b> / Quick start</div>
+      <div>
+        <h2 id="qs-title">Up and running in three steps</h2>
+        <p>You need <strong>Node.js 20+</strong>, <strong>Git</strong> on your PATH (for the <code>npx github:</code> install) and a Mobbin account. A free account works. It is not published to npm: the <code>mobbin-mcp</code> name there was used by the original project, which has since been unpublished, so install from GitHub.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>
+        <div>
+          <h3>Copy your Mobbin session</h3>
+          <p>Log in at <a href="https://mobbin.com" rel="noopener">mobbin.com</a>, open the browser console (F12 → Console) and run the line below. A cookie-export extension's JSON file works too.</p>
+          <div class="snippet"><div class="snippet-bar"><span>Browser console</span></div><pre><code>copy(document.cookie)</code></pre></div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Log in once from your terminal</h3>
+          <p>This verifies the session, saves it to <code>~/.mobbin-mcp/auth.json</code> and refreshes it automatically from then on. The first run downloads and builds the server, so give it a minute.</p>
+          <div class="snippet"><div class="snippet-bar"><span>Terminal</span></div><pre><code>npx -y github:ehabmansour1/mobbin-mcp auth --clipboard</code></pre></div>
+          <p>Other ways: <code>auth cookies.json</code> reads a saved cookie string or JSON export, and plain <code>auth</code> lets you paste interactively. Or skip the file and set <code>MOBBIN_AUTH_COOKIE</code> in your client's <code>env</code> block.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Add it to your AI client and ask</h3>
+          <p>For Claude Code, run the command below. Instructions for other clients are in <a href="#connect">How to connect</a>.</p>
+          <div class="snippet"><div class="snippet-bar"><span>Terminal</span></div><pre><code>claude mcp add --scope user mobbin-mcp -- npx -y github:ehabmansour1/mobbin-mcp</code></pre></div>
+          <p>Then try: <em>“Find real signup screens with Apple and Google sign-in on Mobbin”</em> or <em>“How does Duolingo do onboarding? Show me the flow.”</em></p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="alt">
+      <h3>Prefer a local clone?</h3>
+      <p>Build once, then point any client at <code>node</code> with the absolute path to <code>dist/index.js</code>. This path never needs a <code>cmd /c</code> wrapper on Windows.</p>
+      <div class="snippet"><div class="snippet-bar"><span>Terminal</span></div><pre><code>git clone https://github.com/ehabmansour1/mobbin-mcp.git
+cd mobbin-mcp
+npm install
+npm run build
+node dist/index.js auth --clipboard
+npm run smoke   <span class="c-cm"># optional: check every tool against the live API</span></code></pre></div>
+    </div>
+  </div>
+</section>
+
+<section id="connect" aria-labelledby="connect-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>04</b> / How to connect</div>
+      <div>
+        <h2 id="connect-title">How to connect Mobbin MCP to your AI client</h2>
+        <p>Every snippet uses the server name <code>mobbin-mcp</code>, so it won't clash with Mobbin's official server, which its docs call <code>mobbin</code>. Log in once first (step 2 above). Replace <code>C:/path/to/mobbin-mcp</code> with your clone's path; in JSON use forward slashes or doubled backslashes.</p>
+      </div>
+    </div>
+
+    <div class="clients-list">
+
+      <details class="client" id="c-claude-code" open>
+        <summary><h3 class="client-name">Claude Code</h3> <small>CLI · <code>claude mcp add</code></small></summary>
+        <div class="client-body">
+          <p class="where"><code>--scope user</code> and the default <code>local</code> scope are stored in <code>~/.claude.json</code>. <code>--scope project</code> writes a shareable <code>.mcp.json</code> in the project root. Check with <code>claude mcp list</code>.</p>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>Terminal</span></div><pre><code>claude mcp add --scope user mobbin-mcp -- npx -y github:ehabmansour1/mobbin-mcp</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>Terminal</span></div><pre><code>claude mcp add --scope user mobbin-mcp -- node C:/path/to/mobbin-mcp/dist/index.js</code></pre></div>
+          <h4>Project-shared .mcp.json</h4>
+          <div class="snippet"><div class="snippet-bar"><span>.mcp.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:ehabmansour1/mobbin-mcp"]
+    }
+  }
+}</code></pre></div>
+          <h4>Windows notes</h4>
+          <ul>
+            <li>Everything after <code>--</code> goes to the server unchanged. Put <code>--env KEY=value</code> after the name and before <code>--</code>.</li>
+            <li>If the server shows “Connection closed” or <code>spawn npx ENOENT</code>, run this from PowerShell or cmd: <code>claude mcp add --scope user mobbin-mcp -- cmd /c npx -y github:ehabmansour1/mobbin-mcp</code>. In Git Bash, write <code>cmd //c</code> instead, because Git Bash rewrites a bare <code>/c</code>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="client" id="c-claude-desktop">
+        <summary><h3 class="client-name">Claude Desktop</h3> <small>claude_desktop_config.json</small></summary>
+        <div class="client-body">
+          <p class="where">Settings → Developer → Edit Config. Files: Windows <code>%APPDATA%\Claude\claude_desktop_config.json</code>, macOS <code>~/Library/Application Support/Claude/claude_desktop_config.json</code>. Fully quit and restart Claude Desktop after editing.</p>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>claude_desktop_config.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:ehabmansour1/mobbin-mcp"]
+    }
+  }
+}</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>claude_desktop_config.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "node",
+      "args": ["C:/path/to/mobbin-mcp/dist/index.js"]
+    }
+  }
+}</code></pre></div>
+          <h4>Troubleshooting</h4>
+          <p>Logs are in <code>%APPDATA%\Claude\logs</code> (<code>mcp-server-mobbin-mcp.log</code>). For npx <code>ENOENT</code> or <code>${APPDATA}</code> errors, make sure npm is installed globally (<code>%APPDATA%\npm</code> exists), or add <code>"env": { "APPDATA": "C:\\Users\\&lt;you&gt;\\AppData\\Roaming\\" }</code> to the entry.</p>
+        </div>
+      </details>
+
+      <details class="client" id="c-cursor">
+        <summary><h3 class="client-name">Cursor</h3> <small>~/.cursor/mcp.json</small></summary>
+        <div class="client-body">
+          <p class="where">Global: <code>~/.cursor/mcp.json</code> (Windows <code>%USERPROFILE%\.cursor\mcp.json</code>). Project: <code>.cursor/mcp.json</code>.</p>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>mcp.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "github:ehabmansour1/mobbin-mcp"]
+    }
+  }
+}</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>mcp.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["C:/path/to/mobbin-mcp/dist/index.js"]
+    }
+  }
+}</code></pre></div>
+          <p>If npx fails to start on Windows, use <code>"command": "cmd"</code> with <code>"args": ["/c", "npx", "-y", "github:ehabmansour1/mobbin-mcp"]</code>.</p>
+        </div>
+      </details>
+
+      <details class="client" id="c-vscode">
+        <summary><h3 class="client-name">VS Code · GitHub Copilot</h3> <small>.vscode/mcp.json · uses "servers"</small></summary>
+        <div class="client-body">
+          <p class="where">Workspace <code>.vscode/mcp.json</code>, or the user file from the Command Palette: <em>MCP: Open User Configuration</em>. Note that the top-level key is <code>servers</code>, not <code>mcpServers</code>. The tools appear in Copilot Chat <strong>Agent mode</strong>.</p>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>.vscode/mcp.json</span></div><pre><code>{
+  "servers": {
+    "mobbin-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "github:ehabmansour1/mobbin-mcp"]
+    }
+  }
+}</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>.vscode/mcp.json</span></div><pre><code>{
+  "servers": {
+    "mobbin-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["C:/path/to/mobbin-mcp/dist/index.js"]
+    }
+  }
+}</code></pre></div>
+          <h4>One-line install (bash)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>Terminal</span></div><pre><code>code --add-mcp '{"name":"mobbin-mcp","type":"stdio","command":"npx","args":["-y","github:ehabmansour1/mobbin-mcp"]}'</code></pre></div>
+          <p>In Windows PowerShell 5.1 the inner quotes get stripped, so pasting the JSON into the file is easier.</p>
+          <p><strong>GitHub Copilot CLI</strong> (the <code>copilot</code> terminal app, not VS Code) reads <code>~/.copilot/mcp-config.json</code> instead. That file uses the <code>mcpServers</code> key with the same entry.</p>
+        </div>
+      </details>
+
+      <details class="client" id="c-windsurf">
+        <summary><h3 class="client-name">Windsurf / Devin Desktop</h3> <small>mcp_config.json</small></summary>
+        <div class="client-body">
+          <p class="where">Windsurf was rebranded as Devin Desktop in June 2026. Open the file from the Cascade panel (… menu → MCPs → open config) to be sure which one your build reads. Devin's docs give <code>~/.config/devin/mcp_config.json</code> (Windows <code>%APPDATA%\devin\mcp_config.json</code>) and a project file <code>.devin/mcp_config.json</code>. Windsurf builds from before the rename use <code>~/.codeium/windsurf/mcp_config.json</code>. All of them use the same <code>mcpServers</code> shape.</p>
+          <h4>Devin CLI</h4>
+          <div class="snippet"><div class="snippet-bar"><span>Terminal</span></div><pre><code>devin mcp add -s user mobbin-mcp -- npx -y github:ehabmansour1/mobbin-mcp</code></pre></div>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>mcp_config.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:ehabmansour1/mobbin-mcp"]
+    }
+  }
+}</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>mcp_config.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "node",
+      "args": ["C:/path/to/mobbin-mcp/dist/index.js"]
+    }
+  }
+}</code></pre></div>
+        </div>
+      </details>
+
+      <details class="client" id="c-cline">
+        <summary><h3 class="client-name">Cline</h3> <small>cline_mcp_settings.json</small></summary>
+        <div class="client-body">
+          <p class="where">In the Cline panel: MCP Servers icon → Configure → <em>Configure MCP Servers</em>. Cline CLI: <code>~/.cline/data/settings/cline_mcp_settings.json</code> or the <code>cline mcp</code> wizard.</p>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>cline_mcp_settings.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:ehabmansour1/mobbin-mcp"],
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>cline_mcp_settings.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "node",
+      "args": ["C:/path/to/mobbin-mcp/dist/index.js"],
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}</code></pre></div>
+        </div>
+      </details>
+
+      <details class="client" id="c-codex">
+        <summary><h3 class="client-name">OpenAI Codex</h3> <small>~/.codex/config.toml</small></summary>
+        <div class="client-body">
+          <p class="where">Used by the Codex CLI and the Codex IDE extension. File: <code>~/.codex/config.toml</code> (Windows <code>%USERPROFILE%\.codex\config.toml</code>).</p>
+          <h4>CLI</h4>
+          <div class="snippet"><div class="snippet-bar"><span>Terminal</span></div><pre><code>codex mcp add mobbin-mcp -- npx -y github:ehabmansour1/mobbin-mcp</code></pre></div>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>config.toml</span></div><pre><code>[mcp_servers.mobbin-mcp]
+command = "npx"
+args = ["-y", "github:ehabmansour1/mobbin-mcp"]
+startup_timeout_sec = 120</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>config.toml</span></div><pre><code>[mcp_servers.mobbin-mcp]
+command = "node"
+args = ["C:/path/to/mobbin-mcp/dist/index.js"]</code></pre></div>
+          <p>The default startup timeout is 10 seconds, which is too short for the first <code>npx github:</code> run because it clones and builds the server. That's why the npx example sets <code>startup_timeout_sec = 120</code>.</p>
+        </div>
+      </details>
+
+      <details class="client" id="c-gemini">
+        <summary><h3 class="client-name">Gemini CLI</h3> <small>~/.gemini/settings.json</small></summary>
+        <div class="client-body">
+          <p class="where">User: <code>~/.gemini/settings.json</code>. Project: <code>.gemini/settings.json</code>. Note: since June 18, 2026 Google has moved individual (free, AI Pro and AI Ultra) users from Gemini CLI to Antigravity CLI (<code>agy</code>); Gemini CLI remains for enterprise accounts.</p>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>settings.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:ehabmansour1/mobbin-mcp"]
+    }
+  }
+}</code></pre></div>
+          <h4>Local clone (CLI)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>Terminal</span></div><pre><code>gemini mcp add -s user mobbin-mcp node C:/path/to/mobbin-mcp/dist/index.js</code></pre></div>
+        </div>
+      </details>
+
+      <details class="client" id="c-zed">
+        <summary><h3 class="client-name">Zed</h3> <small>settings.json · uses "context_servers"</small></summary>
+        <div class="client-body">
+          <p class="where">Run the <em>zed: open settings file</em> action. The top-level key is <code>context_servers</code>. Windows path: <code>%APPDATA%\Zed\settings.json</code>.</p>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>settings.json</span></div><pre><code>{
+  "context_servers": {
+    "mobbin-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:ehabmansour1/mobbin-mcp"],
+      "env": {}
+    }
+  }
+}</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>settings.json</span></div><pre><code>{
+  "context_servers": {
+    "mobbin-mcp": {
+      "command": "node",
+      "args": ["C:/path/to/mobbin-mcp/dist/index.js"],
+      "env": {}
+    }
+  }
+}</code></pre></div>
+        </div>
+      </details>
+
+      <details class="client" id="c-continue">
+        <summary><h3 class="client-name">Continue</h3> <small>.continue/mcpServers/*.yaml</small></summary>
+        <div class="client-body">
+          <p class="where">Create <code>.continue/mcpServers/mobbin-mcp.yaml</code> in your workspace. MCP tools only work in Agent mode.</p>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>mobbin-mcp.yaml</span></div><pre><code>name: Mobbin MCP
+version: 0.0.1
+schema: v1
+mcpServers:
+  - name: mobbin-mcp
+    type: stdio
+    command: npx
+    args:
+      - "-y"
+      - "github:ehabmansour1/mobbin-mcp"</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>mobbin-mcp.yaml</span></div><pre><code>name: Mobbin MCP
+version: 0.0.1
+schema: v1
+mcpServers:
+  - name: mobbin-mcp
+    type: stdio
+    command: node
+    args:
+      - "C:/path/to/mobbin-mcp/dist/index.js"</code></pre></div>
+        </div>
+      </details>
+
+      <details class="client" id="c-jetbrains">
+        <summary><h3 class="client-name">JetBrains AI Assistant &amp; Junie</h3> <small>IntelliJ, WebStorm, PyCharm…</small></summary>
+        <div class="client-body">
+          <p class="where"><strong>AI Assistant:</strong> Settings → Tools → AI Assistant → Model Context Protocol (MCP) → Add → STDIO, then paste the JSON. <strong>Junie:</strong> <code>~/.junie/mcp/mcp.json</code> (user) or <code>.junie/mcp/mcp.json</code> (project).</p>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>JSON</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:ehabmansour1/mobbin-mcp"]
+    }
+  }
+}</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>JSON</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "node",
+      "args": ["C:/path/to/mobbin-mcp/dist/index.js"]
+    }
+  }
+}</code></pre></div>
+          <p>Use the saved login (<code>~/.mobbin-mcp/auth.json</code>) rather than environment variables here.</p>
+        </div>
+      </details>
+
+      <details class="client" id="c-lmstudio">
+        <summary><h3 class="client-name">LM Studio</h3> <small>mcp.json</small></summary>
+        <div class="client-body">
+          <p class="where">Right sidebar → Program → Install → <em>Edit mcp.json</em>. LM Studio uses Cursor's <code>mcpServers</code> format. If the file already has servers, add only the <code>"mobbin-mcp"</code> entry.</p>
+          <h4>From GitHub (npx)</h4>
+          <div class="snippet"><div class="snippet-bar"><span>mcp.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "npx",
+      "args": ["-y", "github:ehabmansour1/mobbin-mcp"]
+    }
+  }
+}</code></pre></div>
+          <h4>Local clone</h4>
+          <div class="snippet"><div class="snippet-bar"><span>mcp.json</span></div><pre><code>{
+  "mcpServers": {
+    "mobbin-mcp": {
+      "command": "node",
+      "args": ["C:/path/to/mobbin-mcp/dist/index.js"]
+    }
+  }
+}</code></pre></div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section id="tools" aria-labelledby="tools-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>05</b> / Tools reference</div>
+      <div>
+        <h2 id="tools-title">The 11 Mobbin MCP tools</h2>
+        <p><code>platform</code> is <code>ios</code>, <code>android</code> or <code>web</code> and defaults to <code>ios</code>. Every ID is a UUID returned by another tool. Parameters marked <span class="req">required</span> must be set. The rest are optional, and defaults are shown.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="tools">
+        <caption>Tool names, parameters and defaults as defined in <code>src/index.ts</code> (v2.0.0).</caption>
+        <thead><tr><th scope="col">Tool</th><th scope="col">What it does</th><th scope="col">Parameters</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>mobbin_search_screens</code></td>
+            <td>Search real app screenshots by natural-language <code>query</code> (Mobbin's AI search) or by taxonomy filters. When <code>query</code> is set, the pattern, element and category filters and <code>sort_by</code> are ignored.</td>
+            <td><ul class="params"><li><code>query</code></li><li><code>platform</code> = ios</li><li><code>screen_patterns</code>, <code>screen_elements</code>, <code>categories</code> (string lists)</li><li><code>text_in_screenshot</code>, <code>has_animation</code></li><li><code>sort_by</code> = trending | publishedAt</li><li><code>limit</code> = 20 (max 100; trims Mobbin's first page)</li></ul></td>
+          </tr>
+          <tr>
+            <td><code>mobbin_search_flows</code></td>
+            <td>Search multi-screen user flows such as onboarding, checkout and login, by natural-language <code>query</code> or by flow actions. When <code>query</code> is set, the filters and <code>sort_by</code> are ignored.</td>
+            <td><ul class="params"><li><code>query</code></li><li><code>platform</code> = ios</li><li><code>flow_actions</code>, <code>categories</code></li><li><code>sort_by</code> = trending | publishedAt</li><li><code>limit</code> = 20 (max 100; trims Mobbin's first page)</li></ul></td>
+          </tr>
+          <tr>
+            <td><code>mobbin_search_apps</code></td>
+            <td>Browse apps by category, newest first.</td>
+            <td><ul class="params"><li><code>platform</code> = ios</li><li><code>categories</code></li><li><code>limit</code> = 24 (max 50; trims Mobbin's first page)</li></ul></td>
+          </tr>
+          <tr>
+            <td><code>mobbin_quick_search</code></td>
+            <td>Find an app by name (autocomplete) and get its <code>app_id</code>.</td>
+            <td><ul class="params"><li><code>query</code><span class="req">required</span></li><li><code>platform</code> = ios</li><li><code>limit</code> = 5 (max 10)</li></ul></td>
+          </tr>
+          <tr>
+            <td><code>mobbin_get_app_screens</code></td>
+            <td>List every screen of one app for any version, with pagination.</td>
+            <td><ul class="params"><li><code>app_id</code><span class="req">required</span></li><li><code>version_index</code> = 0 (latest)</li><li><code>offset</code> = 0</li><li><code>limit</code> = 50 (max 200)</li></ul></td>
+          </tr>
+          <tr>
+            <td><code>mobbin_get_app_flows</code></td>
+            <td>List one app's flows, optionally narrowed by a topic such as “onboarding”.</td>
+            <td><ul class="params"><li><code>app_id</code><span class="req">required</span></li><li><code>platform</code> = ios</li><li><code>topic</code></li><li><code>limit</code> = 50 (max 100)</li></ul></td>
+          </tr>
+          <tr>
+            <td><code>mobbin_get_flow</code></td>
+            <td>Get the ordered screens of one flow with their patterns, and optionally the screenshots as images.</td>
+            <td><ul class="params"><li><code>flow_id</code><span class="req">required</span></li><li><code>include_images</code> = false</li><li><code>max_images</code> = 6 (1–12)</li></ul></td>
+          </tr>
+          <tr>
+            <td><code>mobbin_get_screen_detail</code></td>
+            <td>Get one screenshot as an image the model can see, plus its app info.</td>
+            <td><ul class="params"><li><code>screen_id</code><span class="req">required</span></li><li><code>width</code> = 720 (200–1600 px)</li></ul></td>
+          </tr>
+          <tr>
+            <td><code>mobbin_popular_apps</code></td>
+            <td>Show the most popular apps on Mobbin, grouped by category.</td>
+            <td><ul class="params"><li><code>platform</code> = ios</li><li><code>limit_per_category</code> = 3 (max 10)</li></ul></td>
+          </tr>
+          <tr>
+            <td><code>mobbin_list_collections</code></td>
+            <td>List the collections saved in your Mobbin account.</td>
+            <td><ul class="params"><li>none</li></ul></td>
+          </tr>
+          <tr>
+            <td><code>mobbin_get_filters</code></td>
+            <td>List the exact filter names that the search tools accept.</td>
+            <td><ul class="params"><li><code>kind</code><span class="req">required</span> categories | patterns | elements | actions</li><li><code>experience</code> = mobile (or web)</li><li><code>include_definitions</code> = false</li></ul></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="chain"><strong>Typical chain:</strong> <code>mobbin_quick_search("Duolingo")</code> → <code>mobbin_get_app_flows(app_id, topic: "onboarding")</code> → <code>mobbin_get_flow(flow_id, include_images: true)</code>.</p>
+  </div>
+</section>
+
+<section id="compare" aria-labelledby="compare-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>06</b> / Official vs unofficial</div>
+      <div>
+        <h2 id="compare-title">Official Mobbin MCP or this one?</h2>
+        <p>For most people, especially teams and important work, the honest answer is <strong>Mobbin's official server</strong>. This project is for people who want a local, open-source server they can read and change.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="compare">
+        <thead><tr><th scope="col"></th><th scope="col">Official Mobbin MCP</th><th scope="col">mobbin-mcp (this project)</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Made by</th><td data-label="Official Mobbin MCP">Mobbin</td><td data-label="mobbin-mcp (this project)">Ehab Mansour (independent, open source)</td></tr>
+          <tr><th scope="row">How it runs</th><td data-label="Official Mobbin MCP">Remote HTTP server at <code>https://api.mobbin.com/mcp</code></td><td data-label="mobbin-mcp (this project)">Local stdio process on your machine (Node.js)</td></tr>
+          <tr><th scope="row">Setup</th><td data-label="Official Mobbin MCP"><code>claude mcp add mobbin --transport http https://api.mobbin.com/mcp</code></td><td data-label="mobbin-mcp (this project)"><code>npx -y github:ehabmansour1/mobbin-mcp</code> plus a one-time cookie login</td></tr>
+          <tr><th scope="row">API stability</th><td class="yes" data-label="Official Mobbin MCP">Supported by Mobbin</td><td data-label="mobbin-mcp (this project)">Undocumented internal endpoints that can change at any time</td></tr>
+          <tr><th scope="row">Terms of service</th><td class="yes" data-label="Official Mobbin MCP">Mobbin's own product</td><td data-label="mobbin-mcp (this project)">Automated use may conflict with Mobbin's terms; use your own account at low volume</td></tr>
+          <tr><th scope="row">Source code</th><td data-label="Official Mobbin MCP">Hosted service run by Mobbin</td><td data-label="mobbin-mcp (this project)">MIT-licensed TypeScript on GitHub</td></tr>
+          <tr><th scope="row">Best for</th><td data-label="Official Mobbin MCP">Anything important, teams, production workflows</td><td data-label="mobbin-mcp (this project)">Tinkering, learning how MCP servers work, full local control</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>07</b> / FAQ</div>
+      <div><h2 id="faq-title">Frequently asked questions</h2></div>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Is this the official Mobbin MCP server?</summary>
+        <p>No. This is an unofficial, community-built project and is not affiliated with or endorsed by Mobbin. Mobbin runs its own official MCP server at https://api.mobbin.com/mcp, and that is the recommended choice for anything important.</p>
+      </details>
+      <details>
+        <summary>Do I need a paid Mobbin plan?</summary>
+        <p>No, a free Mobbin account works. On a free plan Mobbin marks many results as restricted. They appear as "🔒 Pro-only" (metadata only). On any plan, each search returns only the first page of results Mobbin serves, because this server does not paginate. The server does not try to get around the paywall.</p>
+      </details>
+      <details>
+        <summary>Is Mobbin MCP on npm?</summary>
+        <p>No, this project is not published to npm. The mobbin-mcp name was used by the original project, which has since been unpublished, so npx mobbin-mcp will not work. Install this one straight from GitHub with npx -y github:ehabmansour1/mobbin-mcp, or clone the repository and run npm install and npm run build.</p>
+      </details>
+      <details>
+        <summary>How does login work, and where is my session stored?</summary>
+        <p>Log in to mobbin.com in your browser, copy your cookies (copy(document.cookie) in the console, or a cookie-export JSON file) and run the auth command. Only Mobbin's session cookies are used. The session is verified, saved to ~/.mobbin-mcp/auth.json on your machine and refreshed automatically. You can set the MOBBIN_AUTH_COOKIE environment variable instead.</p>
+      </details>
+      <details>
+        <summary>Which AI apps and editors does it work with?</summary>
+        <p>Any client that can run a local stdio MCP server, including Claude Code, Claude Desktop, Cursor, VS Code with GitHub Copilot, Windsurf / Devin Desktop, Cline, OpenAI Codex, Gemini CLI, Zed, Continue, JetBrains AI Assistant, Junie and LM Studio.</p>
+      </details>
+      <details>
+        <summary>Can the AI actually see the screenshots?</summary>
+        <p>Yes, if your model accepts images. mobbin_get_screen_detail returns a screenshot as an image, and mobbin_get_flow returns up to 6 screenshots by default when include_images is true (raise max_images to get up to 12). Images are only fetched from the signed URLs Mobbin itself issues for your account.</p>
+      </details>
+      <details>
+        <summary>What happens if Mobbin changes its API?</summary>
+        <p>The server uses Mobbin's undocumented internal endpoints, which can change at any time. If a route moves, the affected tool reports a 404 with a hint, and npm run smoke shows exactly which tools broke. All 16 live smoke calls passed on 2026-11-04.</p>
+      </details>
+      <details>
+        <summary>Could heavy use get my Mobbin account rate-limited?</summary>
+        <p>The server sends one request at a time with a 400 ms gap and does not retry Mobbin's rate-limit errors. It reports them as plain messages instead. Automated use may still conflict with Mobbin's terms, so use your own account at low volume.</p>
+      </details>
+      <details>
+        <summary>npx fails on Windows with spawn npx ENOENT. What do I do?</summary>
+        <p>Wrap the command in cmd /c, for example "command": "cmd" with "args": ["/c", "npx", "-y", "github:ehabmansour1/mobbin-mcp"]. Or clone the repository and point the client at node with the full path to dist/index.js, which never needs the wrapper.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="disclaimer" id="disclaimer" aria-labelledby="disclaimer-title">
+  <div class="wrap">
+    <h2 id="disclaimer-title">Disclaimer</h2>
+    <p>Mobbin MCP is an independent, unofficial project. It is not affiliated with, endorsed by or sponsored by Mobbin. “Mobbin” is a trademark of its owner and is used here only to describe what the software works with. The app screenshots and designs on Mobbin belong to their respective owners.</p>
+    <p>The server uses Mobbin's undocumented internal API (verified 2026-11-04), which can change or stop working at any time, and automated use may conflict with Mobbin's terms of service. Use it with your own account, at low volume, at your own risk. It was inspired by the archived <a href="https://github.com/pdcolandrea/mobbin-mcp" rel="noopener">pdcolandrea/mobbin-mcp</a>, which stopped working after Mobbin changed its API, and is a fresh implementation against the current endpoints.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Built by <a href="https://ehabmansour.com/" rel="author">Ehab Mansour</a> · <a href="https://github.com/ehabmansour1/mobbin-mcp/blob/main/LICENSE">MIT License</a></p>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="https://github.com/ehabmansour1/mobbin-mcp">Source on GitHub</a></li>
+        <li><a href="https://github.com/ehabmansour1/mobbin-mcp/issues">Report an issue</a></li>
+        <li><a href="https://github.com/ehabmansour1/mobbin-mcp/blob/main/CHANGELOG.md">Changelog</a></li>
+        <li><a href="https://modelcontextprotocol.io/" rel="noopener">About MCP</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var toast=document.getElementById('toast'),t;
+  function say(msg){toast.textContent=msg;toast.classList.add('on');clearTimeout(t);t=setTimeout(function(){toast.classList.remove('on')},1600)}
+  function fallback(text){var a=document.createElement('textarea');a.value=text;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);return ok}
+  document.querySelectorAll('.snippet').forEach(function(box){
+    var bar=box.querySelector('.snippet-bar'),code=box.querySelector('pre code');
+    if(!bar||!code)return;
+    var label=(bar.textContent||'snippet').trim();
+    var b=document.createElement('button');
+    b.type='button';b.className='copy';b.textContent='Copy';
+    b.setAttribute('aria-label','Copy '+label+' snippet');
+    b.addEventListener('click',function(){
+      var text=code.innerText.replace(/\s+$/,'');
+      function done(ok){if(ok){b.textContent='Copied';b.setAttribute('data-done','');say('Copied to clipboard');setTimeout(function(){b.textContent='Copy';b.removeAttribute('data-done')},1600)}else{say('Press Ctrl+C to copy')}}
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(fallback(text))})}else{done(fallback(text))}
+    });
+    bar.appendChild(b);
+  });
+  /* open the matching client panel when arriving via #c-… links */
+  function openHash(){var id=location.hash.slice(1);if(!id)return;var el=document.getElementById(id);if(el&&el.tagName==='DETAILS')el.open=true}
+  window.addEventListener('hashchange',openHash);openHash();
+})();
+</script>
+</body>
+</html>

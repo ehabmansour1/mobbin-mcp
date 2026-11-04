@@ -1,0 +1,70 @@
+{
+  "name": "mobbin-mcp",
+  "version": "2.0.0",
+  "description": "Unofficial Mobbin MCP server: search Mobbin's library of real app screens, user flows and UI patterns from Claude, Claude Code, Cursor or any Model Context Protocol client. Rebuilt for Mobbin's current API.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "mobbin-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "start": "node dist/index.js",
+    "auth": "node dist/index.js auth",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehabmansour1/mobbin-mcp.git"
+  },
+  "homepage": "https://ehabmansour1.github.io/mobbin-mcp/",
+  "bugs": {
+    "url": "https://github.com/ehabmansour1/mobbin-mcp/issues"
+  },
+  "author": "Ehab Mansour (https://ehabmansour.com/)",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "modelcontextprotocol",
+    "mobbin",
+    "mobbin-mcp",
+    "mobbin-api",
+    "design-inspiration",
+    "ui-design",
+    "ux-design",
+    "ux",
+    "ui-patterns",
+    "design-patterns",
+    "app-screens",
+    "user-flows",
+    "screenshots",
+    "mobile-design",
+    "ios",
+    "android",
+    "web-design",
+    "claude",
+    "claude-code",
+    "claude-desktop",
+    "cursor",
+    "windsurf",
+    "ai-agent",
+    "llm-tools"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3"
+  }
+}

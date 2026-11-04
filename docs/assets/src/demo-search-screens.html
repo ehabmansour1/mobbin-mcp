@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>demo: mobbin_search_screens</title>
+<style>
+  :root {
+    --bg: #0f1116; --bar: #15181e; --border: #2a2f38;
+    --fg: #e4e6ea; --out: #b3b9c3; --dim: #7d848f; --dimmer: #565d68;
+    --green: #4fc98b; --coral: #e8875f; --blue: #82a8f0; --yellow: #e2c27a; --user: #1c2027;
+  }
+  html, body { margin: 0; background: transparent; }
+  body {
+    width: 680px; padding: 12px; box-sizing: border-box;
+    font: 12.5px/1.6 Consolas, "Cascadia Mono", "SF Mono", Menlo, monospace;
+    color: var(--fg); -webkit-font-smoothing: antialiased;
+  }
+  .win { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,.22); }
+  .bar { display: flex; align-items: center; gap: 7px; padding: 9px 12px; background: var(--bar); border-bottom: 1px solid var(--border); }
+  .bar i { width: 10px; height: 10px; border-radius: 50%; background: #3a3f48; display: block; }
+  .bar i:nth-child(1) { background: #ff5f57; } .bar i:nth-child(2) { background: #febc2e; } .bar i:nth-child(3) { background: #28c840; }
+  .bar span { flex: 1; text-align: center; color: var(--dim); font: 500 11.5px "Segoe UI", system-ui, sans-serif; margin-right: 44px; }
+  .term { padding: 14px 18px 14px; }
+  .user { background: var(--user); color: #d9dce1; border-radius: 4px; padding: 5px 9px; display: grid; grid-template-columns: 2ch 1fr; }
+  .user::before { content: ">"; color: var(--dim); }
+  .msg { display: grid; grid-template-columns: 2ch 1fr; margin-top: 12px; }
+  .dot { width: .6em; height: .6em; border-radius: 50%; background: var(--fg); margin-top: .5em; }
+  .dot.ok { background: var(--green); }
+  .tool b { font-weight: 700; color: var(--fg); }
+  .tool .mcp { color: var(--dim); }
+  .tool .args { color: var(--out); }
+  .out { display: grid; grid-template-columns: 2ch 3ch 1fr; color: var(--out); }
+  .out .el { grid-column: 2; color: var(--dimmer); font-family: "Cambria Math", "Segoe UI Symbol", monospace; }
+  .pre { white-space: pre-wrap; }
+  .h { color: var(--coral); font-weight: 700; }
+  .n { color: var(--fg); font-weight: 700; }
+  .id { color: var(--blue); }
+  .tag { color: var(--yellow); }
+  .mute { color: var(--dimmer); }
+  .more { color: var(--dim); font-style: italic; }
+  .say { color: var(--fg); white-space: pre-wrap; }
+  .say code { color: var(--blue); font-family: inherit; }
+  .input { margin-top: 16px; border: 1px solid #3a404a; border-radius: 6px; padding: 5px 9px; color: var(--dim); }
+  .input .cur { display: inline-block; width: .6em; height: 1.1em; background: #c9ccd2; vertical-align: -.2em; margin-left: .3em; }
+  .hint { color: var(--dimmer); font-size: 11.5px; padding: 3px 10px 0; }
+  .emo { font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif; font-size: .95em; }
+</style>
+</head>
+<body>
+<div class="win">
+  <div class="bar"><i></i><i></i><i></i><span>claude — ~/projects/fitness-app</span></div>
+  <div class="term">
+    <div class="user"><div>I'm designing a paywall for our fitness app. Find real paywall screens with a free trial toggle on Mobbin.</div></div>
+
+    <div class="msg tool"><div class="dot ok"></div><div><b>mobbin-mcp - mobbin_search_screens</b> <span class="mcp">(MCP)</span><span class="args">(query: "paywall with free trial toggle", limit: 6)</span></div></div>
+    <div class="out"><span class="el">⎿</span><div class="pre"><span class="h">## Screens</span>
+Showing 6 of 922.
+
+1. <span class="n">Cal AI</span> (ios)
+   <span class="mute">—</span>
+   screen_id: <span class="id">e145982d-dec3-…</span> · app_id: <span class="id">c343d59e-…</span> · mobbin.com/screens/e145982d-…
+2. <span class="n">Brilliant</span> (ios)
+   <span class="tag">Loading, Loading Indicator</span>
+   screen_id: <span class="id">4769fa19-5abe-…</span> · app_id: <span class="id">d092bc2b-…</span> · mobbin.com/screens/4769fa19-…
+3. <span class="n">Bevel</span> (ios) <span class="emo">(animated)</span>
+   <span class="tag">Select, Subscription &amp; Paywall, Pricing, Badge</span>
+   screen_id: <span class="id">87ac5af9-7c7a-…</span> · app_id: <span class="id">4e7bb614-…</span> · mobbin.com/screens/87ac5af9-…
+4. <span class="n">Google Health (Fitbit)</span> (ios)
+   <span class="mute">—</span>
+   screen_id: <span class="id">a6a5ec71-199a-…</span> · app_id: <span class="id">246f183d-…</span> · mobbin.com/screens/a6a5ec71-…
+<span class="more">… +6 lines (ctrl+o to expand)</span></div></div>
+
+    <div class="msg"><div class="dot"></div><div class="say">Mobbin has 922 matches. Good starting points:
+• <b>Bevel</b> — tagged Subscription &amp; Paywall, Pricing, Select (has an animation)
+• <b>Cal AI</b>, <b>Lifesum</b>, <b>Jomo</b>, <b>Google Health (Fitbit)</b> — more paywalls from health &amp; habit apps
+
+Want me to open Bevel's screen with <code>mobbin_get_screen_detail</code> so we can compare the trial-toggle layouts?</div></div>
+
+    <div class="input">&gt;<span class="cur"></span></div>
+    <div class="hint">? for shortcuts</div>
+  </div>
+</div>
+<script>document.body.dataset.h = Math.ceil(document.body.getBoundingClientRect().height);</script>
+</body>
+</html>

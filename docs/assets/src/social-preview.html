@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Mobbin MCP: social preview (1280x640)</title>
+<style>
+  :root {
+    --bg: #0b0d12; --fg: #f2f3f5; --sub: #c3c8d0; --dim: #7f8692; --dimmer: #59606b;
+    --green: #4fc98b; --coral: #ef8a62; --blue: #86abf2; --yellow: #e4c47c; --border: #2a2f38;
+  }
+  html, body { margin: 0; }
+  body {
+    width: 640px; height: 320px; overflow: hidden; position: relative;
+    background:
+      radial-gradient(420px 260px at 0% 0%, rgba(239,138,98,.16), transparent 70%),
+      radial-gradient(380px 300px at 100% 100%, rgba(110,130,240,.14), transparent 70%),
+      var(--bg);
+    color: var(--fg); font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .left { position: absolute; left: 38px; top: 58px; width: 292px; }
+  .kicker { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--coral); border: 1px solid rgba(239,138,98,.45); border-radius: 999px; padding: 3px 9px; }
+  h1 { margin: 16px 0 0; font-size: 46px; line-height: 1; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; }
+  h1 span { color: var(--coral); }
+  .tag { margin: 16px 0 0; font-size: 17px; line-height: 1.38; color: var(--sub); font-weight: 500; }
+  .tag b { color: var(--fg); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+  .chips span { font-size: 10.5px; font-weight: 600; color: #d9dce1; background: #171b22; border: 1px solid var(--border);
+    border-radius: 5px; padding: 3px 7px; }
+  .foot { position: absolute; left: 38px; bottom: 26px; font: 11px Consolas, "Cascadia Mono", Menlo, monospace; color: var(--dim); }
+  .foot b { color: var(--sub); font-weight: 400; }
+
+  .card { position: absolute; right: 30px; top: 42px; width: 268px; background: #0f1116; border: 1px solid var(--border);
+    border-radius: 9px; overflow: hidden; box-shadow: 0 14px 40px rgba(0,0,0,.45); }
+  .bar { display: flex; gap: 5px; padding: 7px 9px; background: #15181e; border-bottom: 1px solid var(--border); align-items: center; }
+  .bar i { width: 7px; height: 7px; border-radius: 50%; display: block; }
+  .bar i:nth-child(1) { background: #ff5f57; } .bar i:nth-child(2) { background: #febc2e; } .bar i:nth-child(3) { background: #28c840; }
+  .bar span { flex: 1; text-align: center; font-size: 8.5px; color: var(--dim); margin-right: 26px; }
+  .term { padding: 9px 11px 11px; font: 9.4px/1.6 Consolas, "Cascadia Mono", Menlo, monospace; color: #b3b9c3; }
+  .user { background: #1c2027; color: #d9dce1; border-radius: 3px; padding: 2px 6px; margin-bottom: 6px; }
+  .user::before { content: "> "; color: var(--dim); }
+  .row { display: grid; grid-template-columns: 1.6ch 1fr; }
+  .dot { width: .6em; height: .6em; border-radius: 50%; background: var(--green); margin-top: .5em; }
+  .dot.w { background: var(--fg); }
+  .row b { color: var(--fg); }
+  .out { padding-left: 1.6ch; display: grid; grid-template-columns: 2.4ch 1fr; margin-bottom: 4px; }
+  .out .el { color: var(--dimmer); font-family: "Cambria Math", "Segoe UI Symbol", monospace; }
+  .n { color: var(--fg); }
+  .t { color: var(--yellow); }
+  .lock { font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif; font-size: .9em; }
+  .say { color: var(--fg); }
+</style>
+</head>
+<body>
+  <div class="left">
+    <div class="kicker">Unofficial MCP server</div>
+    <h1>Mobbin <span>MCP</span></h1>
+    <p class="tag">Search <b>real app screens &amp; flows</b> from Claude, Cursor &amp; VS&nbsp;Code.</p>
+    <div class="chips"><span>11 tools</span><span>Plain-English search</span><span>MIT</span></div>
+  </div>
+  <div class="foot"><b>github.com/ehabmansour1/mobbin-mcp</b></div>
+
+  <div class="card">
+    <div class="bar"><i></i><i></i><i></i><span>claude</span></div>
+    <div class="term">
+      <div class="user">how does Duolingo do onboarding?</div>
+      <div class="row"><div class="dot"></div><div><b>mobbin_quick_search</b>("Duolingo")</div></div>
+      <div class="out"><span class="el">⎿</span><div><span class="n">Duolingo</span> (ios) — Learn languages</div></div>
+      <div class="row"><div class="dot"></div><div><b>mobbin_get_app_flows</b>(topic: "onboarding")</div></div>
+      <div class="out"><span class="el">⎿</span><div><span class="n">Duolingo — Onboarding</span> · 20 screens<br>Duolingo — Creating a profile <span class="lock">🔒</span><br>Duolingo — Choosing a learning goal <span class="lock">🔒</span></div></div>
+      <div class="row"><div class="dot"></div><div><b>mobbin_get_flow</b>(flow_id: "b0b4f93f-…")</div></div>
+      <div class="out"><span class="el">⎿</span><div><span class="t">Splash</span> → <span class="t">Welcome</span> → … → <span class="t">Account Setup</span><br>→ <span class="t">Permission</span> → <span class="t">Badge</span> · 20 screens</div></div>
+      <div class="row"><div class="dot w"></div><div class="say">Here's how Duolingo onboards new users…</div></div>
+    </div>
+  </div>
+</body>
+</html>
